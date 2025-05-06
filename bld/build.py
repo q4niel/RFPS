@@ -7,10 +7,14 @@ buildDir: str = f"{cfg["outDir"]}/{datetime.now().strftime("%H_%M_%S")}"
 wasteDir: str = f"{buildDir}/waste"
 
 def compile() -> bool:
+    includes: str = ""
+    for include in cfg["includes"]:
+        includes += f"-I{include} "
+
     for src in cfg["sources"]:
         print(f"compiling '{src}.cxx'...")
 
-        if not 0 == os.system(f"clang++ -c {src}.cxx -o {wasteDir}/{os.path.basename(src)}.o"):
+        if not 0 == os.system(f"clang++ {includes} -c {src}.cxx -o {wasteDir}/{os.path.basename(src)}.o"):
             print(f"compilation of '{src}.cxx' failed")
             return False
 
@@ -20,8 +24,12 @@ def link() -> bool:
     print("linking sources...")
 
     srcs: str = ""
+
     for src in cfg["sources"]:
         srcs += f"{wasteDir}/{os.path.basename(src)}.o "
+
+    for lib in cfg["staticLibs"]:
+        srcs += f"{lib}.a "
 
     return 0 == os.system(f"clang++ {srcs} -o {buildDir}/{cfg["binName"]}")
 

@@ -1,6 +1,15 @@
-#include <iostream>
+#include <raylib.h>
 
 int main(int argc, char *argv[]) {
-    std::cout << "hello world\n";
+    InitWindow(800, 450, "rfps");
+    SetTargetFPS(60);
+
+    while (!WindowShouldClose()) {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        EndDrawing();
+    }
+
+    CloseWindow();
     return 0;
 }
