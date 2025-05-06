@@ -7,3 +7,5 @@ bld/out
 
 !src/
 !src/**/*
+
+!bootstrap.sh
