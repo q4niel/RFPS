@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+import shutil
 import util
 
 cfg: dict = util.loadCfg()
@@ -43,11 +44,11 @@ def build() -> str:
     os.makedirs(wasteDir)
 
     if not compile() or not link():
-        os.rmdir(buildDir)
+        shutil.rmtree(buildDir)
         print("build failed")
-        return "null"
+    else:
+        print("build successful")
 
-    print("build successful")
     return buildDir
 
 if __name__ == "__main__": build()

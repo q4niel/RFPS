@@ -10,5 +10,6 @@ includes = [
 ]
 
 sources = [
-    "src/main"
+    "src/main",
+    "src/player"
 ]
