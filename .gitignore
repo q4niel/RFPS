@@ -1,0 +1,9 @@
+*
+!.gitignore
+
+!bld/
+!bld/**/*
+bld/out
+
+!src/
+!src/**/*
