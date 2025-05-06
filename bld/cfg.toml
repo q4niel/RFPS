@@ -1,0 +1,5 @@
+outDir = "bld/out"
+binName = "rfps"
+sources = [
+    "src/main"
+]
